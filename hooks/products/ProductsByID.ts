@@ -4,7 +4,7 @@ import GameType from "@/types/games";
 
 const { getProductsByID } = service[MODE];
 
-export default function ProductsByID({ isDepend = false, id }: { isDepend?: unknown; id: number }) {
+export default function ProductsByID({ isDepend = false, id }: { isDepend?: unknown; id: number | string }) {
   const [product, setProduct] = useState<GameType[] | null>(null);
   const [spinner, setSpinner] = useState<boolean>(true);
 
