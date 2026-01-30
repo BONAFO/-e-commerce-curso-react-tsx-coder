@@ -32,7 +32,7 @@ const getProductsByName = async (
 
 // Buscar producto por ID
 const getProductsByID = async (
-  id: number
+  id: number | string
 ): Promise<{ status: number; data: GameType[] }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

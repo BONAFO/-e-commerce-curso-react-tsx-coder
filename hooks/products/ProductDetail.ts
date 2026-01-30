@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 
-export const useProductDetailHook = (product: GameType & { stock?: number }) => {
+export default function useProductDetailHook (product: GameType & { stock?: number }) {
   const { cart, setCart } = useCart();
   const [quantity, setQuantity] = useState<number>(1);
 
