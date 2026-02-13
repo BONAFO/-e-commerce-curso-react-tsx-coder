@@ -1,7 +1,9 @@
 import products from "./products.json";
 import categories from "./categories.json";
+import orders from "./orders.json";
 import GameType from "@/types/games";
 import CategoryType from "@/types/categories";
+import OrderType from "@/types/orders";
 
 // Obtener todos los productos
 const getProducts = async (): Promise<{ status: number; data: GameType[] }> => {
@@ -15,14 +17,14 @@ const getProducts = async (): Promise<{ status: number; data: GameType[] }> => {
 
 // Buscar productos por nombre
 const getProductsByName = async (
-  name: string
+  name: string,
 ): Promise<{ status: number; data: GameType[] }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const resp = {
         status: 200,
         data: (products as GameType[]).filter((item) =>
-          item.name.toLowerCase().includes(name.toLowerCase())
+          item.name.toLowerCase().includes(name.toLowerCase()),
         ),
       };
       resp.status == 200 ? resolve(resp) : reject(resp);
@@ -32,7 +34,7 @@ const getProductsByName = async (
 
 // Buscar producto por ID
 const getProductsByID = async (
-  id: number | string
+  id: number | string,
 ): Promise<{ status: number; data: GameType[] }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -47,16 +49,18 @@ const getProductsByID = async (
 
 // Buscar productos por ID de categoría
 const getProductsByCatID = async (
-  categorieID: number
+  categorieID: number | string,
 ): Promise<{ status: number; data: GameType[] }> => {
-  console.log("categorieID",typeof categorieID);
-  
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const resp = {
         status: 200,
         data: (products as GameType[]).filter(
-          (item) => item.categorie == categorieID
+          (item) =>
+            item.category.indexOf(
+              // @ts-ignore
+              isNaN(categorieID) ? categorieID : parseInt(categorieID),
+            ) !== -1,
         ),
       };
       resp.status == 200 ? resolve(resp) : reject(resp);
@@ -66,18 +70,22 @@ const getProductsByCatID = async (
 
 // Buscar productos por nombre de categoría
 const getProductsByCatName = async (
-  categorieName: string
+  categorieName: string,
 ): Promise<{ status: number; data: GameType[] }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const categorieID = (categories as CategoryType[]).find(
-        (cat) => cat.normalized_es == categorieName
-      )?.id;
+        (cat) => cat.normalized_es == categorieName,
+      )?.id as string | number;
 
       const resp = {
         status: 200,
         data: (products as GameType[]).filter(
-          (item) => item.categorie == categorieID
+          (item) =>
+            item.category.indexOf(
+              // @ts-ignore
+              isNaN(categorieID) ? categorieID : parseInt(categorieID),
+            ) !== -1,
         ),
       };
       resp.status == 200 ? resolve(resp) : reject(resp);
@@ -86,7 +94,10 @@ const getProductsByCatName = async (
 };
 
 // Obtener todas las categorías
-const getCategories = async (): Promise<{ status: number; data: CategoryType[] }> => {
+const getCategories = async (): Promise<{
+  status: number;
+  data: CategoryType[];
+}> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const resp = { status: 200, data: categories as CategoryType[] };
@@ -95,27 +106,51 @@ const getCategories = async (): Promise<{ status: number; data: CategoryType[] }
   });
 };
 
+
+
 // Guardar una venta (mock)
-const saveSell = async (data: unknown): Promise<{ status: number; data: unknown }> => {
-  return new Promise((resolve, reject) => {
+const saveSell = async (
+  sellData: any,
+  stockData: { id: number | string; stock: number }[],
+): Promise<{ status: number; data: string | number }> => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      const resp = { status: 200, data };
-      resp.status == 200 ? resolve(resp) : reject(resp);
+      const resp = { status: 200, data: "dsuasdhasdyha12" };
+      resolve(resp);
     }, 2000);
   });
 };
 
 // Obtener una orden (mock)
+// const getOrder = async (
+//   orderID: number | string,
+// ): Promise<{ status: number; data: OrderType }> => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const resp = { status: 200, data: {} as OrderType }; 
+//       resp.status == 200 ? resolve(resp) : reject(resp);
+//     }, 2000);
+//   });
+// };
+
+// Obtener una orden (mock)
 const getOrder = async (
-  orderID: number
-): Promise<{ status: number; data: GameType[] | null }> => {
+  orderID: number | string,
+): Promise<{ status: number; data: OrderType | null }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const resp = { status: 200, data: null };
-      resp.status == 200 ? resolve(resp) : reject(resp);
+      const order = orders.find((o) => o.id === String(orderID));
+
+      if (order) {
+        resolve({ status: 200, data: order as OrderType });
+      } else {
+        reject({ status: 404, data: null });
+      }
     }, 2000);
   });
 };
+
+
 
 export default {
   getProducts,

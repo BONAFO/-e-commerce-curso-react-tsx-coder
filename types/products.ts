@@ -4,5 +4,5 @@ export default interface ProductType {
   img: string;             
   price: number;           
   desc: string;            
-  categorie: number;       
+  category: number;       
 }

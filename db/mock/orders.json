@@ -1,0 +1,24 @@
+[
+    {
+        "id": "1",
+        "address": "1231232",
+        "cardNumber": "2414",
+        "dni": "21348411",
+        "email": "1DASDAS@GMAIL.COM",
+        "finalImport": 2392,
+        "fullName": "ASDASDAS",
+        "payMethod": 1,
+        "payProcessor": "mastercard",
+        "phone": "12312322222222",
+        "products": [
+            {
+                "id": "1",
+                "quantity": 1
+            },
+               {
+                "id": "6",
+                "quantity": 2
+            }
+        ]
+    }
+]
