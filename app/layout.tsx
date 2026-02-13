@@ -4,6 +4,7 @@ import "./globals.css";
 import ScreenProvider from "@/context/ScreenContext";
 import MsjsProvider from "@/context/LoadingMsjContext";
 import CartProvider from "@/context/CartContext";
+import PayProvider from "@/context/PayContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,11 +31,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ScreenProvider>
-          <MsjsProvider>
-            <CartProvider>{children}</CartProvider>
-          </MsjsProvider>
-        </ScreenProvider>
+             <ScreenProvider>
+        <MsjsProvider>
+          <CartProvider>
+            <PayProvider>
+              {children}
+            </PayProvider>
+          </CartProvider>
+        </MsjsProvider>
+      </ScreenProvider>
       </body>
     </html>
   );

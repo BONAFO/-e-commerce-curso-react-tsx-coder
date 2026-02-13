@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   IconButton,
   Menu,
@@ -12,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Link from "next/link"; // 👈 Next.js Link
+import Link from "next/link"; 
 import { routes } from "@/router/router";
 import useCartHook from "@/hooks/cart/Cart";
 
@@ -55,8 +56,8 @@ export default function CartWidget() {
             <ListItemText primary="El carrito está vacío" />
           </MenuItem>
         ) : (
-          <>
-            {cart.map((item, index) => (
+          [
+            ...cart.map((item, index) => (
               <MenuItem key={index}>
                 <ListItem
                   disableGutters
@@ -90,9 +91,8 @@ export default function CartWidget() {
                   </Button>
                 </ListItem>
               </MenuItem>
-            ))}
-
-            <MenuItem disabled>
+            )),
+            <MenuItem disabled key="total">
               <ListItem disableGutters sx={{ width: "100%" }}>
                 <Box sx={{ flexGrow: 1, textAlign: "right" }}>
                   <Typography color="text.secondary">
@@ -100,16 +100,16 @@ export default function CartWidget() {
                   </Typography>
                 </Box>
               </ListItem>
-            </MenuItem>
-          </>
+            </MenuItem>,
+          ]
         )}
 
         <Button
           color="info"
           sx={{ textAlign: "center", width: "100%" }}
           size="small"
-          component={Link} // 👈 Next.js Link
-          href={routes.productPay} // 👈 usamos href en vez de to
+          component={Link}
+          href={routes.productPay}
         >
           Pagar
         </Button>

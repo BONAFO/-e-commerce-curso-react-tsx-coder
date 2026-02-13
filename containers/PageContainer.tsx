@@ -10,13 +10,13 @@ import { useParams } from "next/navigation";
 import RouterCategories from "@/hooks/products/RouterCategories";
 import Categories from "@/hooks/categories/Categories";
 import SidebarFilter from "@/components/productsList/SidebarFilter";
+import { useEffect } from "react";
+import { usePay } from "@/context/PayContext";
 
 export default function ItemListContainer() {
   const params = useParams();
   const id = params?.id as string | undefined;
 
-
-  
   const { products, spinner } = RouterCategories({
     isDepend: id,
     id,
@@ -25,6 +25,7 @@ export default function ItemListContainer() {
   const { categories, spinner: cat_spinner } = Categories({});
 
   const { no_games } = useMsjs();
+
 
   return (
     <>

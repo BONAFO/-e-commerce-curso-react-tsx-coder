@@ -20,7 +20,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 import CategoryType from "@/types/categories";
-import { routes } from "@/router/router"; // 👈 ajustá tu import según tu estructura
+import { routes } from "@/router/router";
 
 interface SidebarFilterProps {
   categories: CategoryType[];
@@ -36,17 +36,17 @@ export default function SidebarFilter({ categories }: SidebarFilterProps): React
 
   const lang = "es";
 
-const getName = (cat: CategoryType, lang: string): string => {
-  return lang == "es" ? cat.name_es : cat.name_en;
-};
+  const getName = (cat: CategoryType, lang: string): string => {
+    return lang === "es" ? cat.name_es : cat.name_en;
+  };
 
-const sortedCategories = [...categories].sort((a, b) =>
-  getName(a, lang).localeCompare(getName(b, lang))
-);
+  const sortedCategories = [...categories].sort((a, b) =>
+    getName(a, lang).localeCompare(getName(b, lang))
+  );
 
   // Reordenar para que "todos" vaya primero
   const orderedCategories = [
-    sortedCategories.find((cat) => cat.normalized_es == "todos")!,
+    sortedCategories.find((cat) => cat.normalized_es === "todos")!,
     ...sortedCategories.filter((cat) => cat.normalized_es !== "todos"),
   ];
 
@@ -80,32 +80,30 @@ const sortedCategories = [...categories].sort((a, b) =>
 
       <Divider sx={{ mb: 1, display: collapsed ? "none" : "block" }} />
 
-<List sx={{ overflowY: "auto", maxHeight: "calc(80vh - 60px)" }}>
-  {orderedCategories.map((cat) => {
-    const isTodos = cat.normalized_es === "todos";
+      <List sx={{ overflowY: "auto", maxHeight: "calc(80vh - 60px)" }}>
+        {orderedCategories.map((cat) => {
+          const isTodos = cat.normalized_es === "todos";
+          const isActive =
+            id === String(cat.id) || (id === undefined && cat.normalized_es === "todos");
 
-    return (
-      <ListItemButton
-        key={cat.id}
-        component={Link}
-        href={isTodos ? "/categorias" : routes.mainPageCategorie(String(cat.id))}
-        sx={{ justifyContent: collapsed ? "center" : "flex-start" }}
-      >
-        <ListItemText
-          primary={capitalize(cat[`name_${lang}` as keyof CategoryType] as string)}
-          sx={{
-            display: collapsed ? "none" : "block",
-            color:
-              id == String(cat.id) || (id == undefined && cat.name_es == "todos")
-                ? "#a5e7ffff"
-                : "#ffffff",
-          }}
-        />
-      </ListItemButton>
-    );
-  })}
-</List>
-
+          return (
+            <ListItemButton
+              key={cat.id}
+              component={Link}
+              href={isTodos ? "/categorias" : routes.mainPageCategorie(String(cat.id))}
+              sx={{ justifyContent: collapsed ? "center" : "flex-start" }}
+            >
+              <ListItemText
+                primary={capitalize(getName(cat, lang))}
+                sx={{
+                  display: collapsed ? "none" : "block",
+                  color: isActive ? "#a5e7ffff" : "#ffffff",
+                }}
+              />
+            </ListItemButton>
+          );
+        })}
+      </List>
     </Box>
   );
 }
