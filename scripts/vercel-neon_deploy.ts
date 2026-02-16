@@ -20,7 +20,7 @@ async function deploy() {
       name TEXT NOT NULL,
       img TEXT,
       price NUMERIC NOT NULL,
-      desc TEXT,
+      description TEXT,
       category INTEGER[] NOT NULL,
       stock INTEGER NOT NULL
     );`;
