@@ -3,7 +3,7 @@ export default interface GameType {
   name: string;
   img: string;
   price: number;
-  desc: string;
+  description: string;
   category: number[] | string;
   stock: number;
 }

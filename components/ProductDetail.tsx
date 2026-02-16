@@ -40,7 +40,7 @@ export function ProductMobile({ product }: { product: GameType }) {
             sx={{ marginTop: "25px", marginLeft: "20px" }}
             variant="h5"
           >
-            {product.desc}
+            {product.description}
           </Typography>
         </td>
       </tr>
@@ -132,7 +132,7 @@ export function ProductDesk({ product }: { product: GameType }) {
             sx={{ marginTop: "25px", marginLeft: "20px" }}
             variant="h5"
           >
-            {product.desc}
+            {product.description}
           </Typography>
           <Box
             sx={{ width: "100%", paddingRight: "20px", textAlign: "center" }}
