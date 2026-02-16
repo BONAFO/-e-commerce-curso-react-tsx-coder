@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { neon } from "@neondatabase/serverless";
-import products from "./products.json"
+import products from "./products.json" assert { type: "json" };
+
 
 
 const sql = neon(process.env.DATABASE_URL!);
