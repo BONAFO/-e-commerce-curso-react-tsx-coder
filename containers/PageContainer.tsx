@@ -26,11 +26,7 @@ export default function ItemListContainer() {
 
   const { no_games } = useMsjs();
 
-  useEffect(() => {
-    fetch("/api/test")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+
   return (
     <>
       <Spinner loading={cat_spinner && spinner} />
