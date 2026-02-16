@@ -10,6 +10,8 @@ import { useParams } from "next/navigation";
 import RouterCategories from "@/hooks/products/RouterCategories";
 import Categories from "@/hooks/categories/Categories";
 import SidebarFilter from "@/components/productsList/SidebarFilter";
+import { useEffect } from "react";
+import { usePay } from "@/context/PayContext";
 
 export default function ItemListContainer() {
   const params = useParams();
@@ -24,7 +26,7 @@ export default function ItemListContainer() {
 
   const { no_games } = useMsjs();
 
-  
+
   return (
     <>
       <Spinner loading={cat_spinner && spinner} />

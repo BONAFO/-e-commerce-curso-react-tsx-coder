@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next build && next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "vercel-neon-deploy": "ts-node scripts/vercel-neon_deploy.ts && next build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

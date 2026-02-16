@@ -1,9 +1,9 @@
+import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 
-export async function testConnection() {
-  console.log("sda", process.env.ENV_TEST!);
+const sql = neon(process.env.DATABASE_URL!);
 
-  const sql = neon(process.env.DATABASE_URL!);
+export async function GET() {
   const result = await sql`SELECT NOW();`;
-  console.log("DB responde:", result);
+  return NextResponse.json({ dbTime: result[0].now });
 }
