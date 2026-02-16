@@ -1,6 +1,8 @@
 import { neon } from "@neondatabase/serverless";
 
 export async function testConnection() {
+   console.log(10);
+   
   console.log("sda", process.env.ENV_TEST);
 
   const sql = neon(process.env.DATABASE_URL!);
