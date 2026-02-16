@@ -5,6 +5,9 @@ import ScreenProvider from "@/context/ScreenContext";
 import MsjsProvider from "@/context/LoadingMsjContext";
 import CartProvider from "@/context/CartContext";
 import PayProvider from "@/context/PayContext";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
