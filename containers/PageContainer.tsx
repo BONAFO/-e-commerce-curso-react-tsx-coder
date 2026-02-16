@@ -12,6 +12,7 @@ import Categories from "@/hooks/categories/Categories";
 import SidebarFilter from "@/components/productsList/SidebarFilter";
 import { useEffect } from "react";
 import { usePay } from "@/context/PayContext";
+import { testConnection } from "@/db/neon/service";
 
 export default function ItemListContainer() {
   const params = useParams();
@@ -26,7 +27,8 @@ export default function ItemListContainer() {
 
   const { no_games } = useMsjs();
 
-
+  testConnection()
+  
   return (
     <>
       <Spinner loading={cat_spinner && spinner} />
