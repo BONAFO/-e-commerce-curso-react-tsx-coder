@@ -26,12 +26,6 @@ const getProductsByID = async (
   }
 };
 
-export const cosa =async ()=>{
-  console.log("cpsa",await axios.get(`${vecel_neon_route}products/?param=1`));
-  
-}
-
-cosa()
 
 // Buscar productos por nombre
 const getProductsByName = async (
