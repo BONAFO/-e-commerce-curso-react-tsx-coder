@@ -3,7 +3,7 @@ import GameType from "@/types/games";
 import { NextResponse, NextRequest } from "next/server";
 
 async function getProductByID(
-  id: number,
+  id: string,
 ): Promise<{ status: number; data: GameType[] }> {
   try {
     const rows = await sql`SELECT * FROM Games WHERE id = ${id};`;
@@ -30,7 +30,8 @@ async function getProductsByName(
 
 export async function GET(
   req: Request,
-  { params }: { params: { param: any } },
+  //@ts-ignore
+  { params }: { params: { param: string } },
 ) {
   const { param } = params;
 
