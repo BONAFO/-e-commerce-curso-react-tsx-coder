@@ -121,17 +121,6 @@ const saveSell = async (
   });
 };
 
-// Obtener una orden (mock)
-// const getOrder = async (
-//   orderID: number | string,
-// ): Promise<{ status: number; data: OrderType }> => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       const resp = { status: 200, data: {} as OrderType }; 
-//       resp.status == 200 ? resolve(resp) : reject(resp);
-//     }, 2000);
-//   });
-// };
 
 // Obtener una orden (mock)
 const getOrder = async (

@@ -1,5 +1,7 @@
 import mock from "./mock/service";
-// import neon from "./neon/service";          
+import neon from "./neon/service";          
+
+console.log(neon.getProducts());
 
 
 export const MODE = "mock";
