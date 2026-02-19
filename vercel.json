@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "VERCEL_IGNORE_BUILD_STEP": "if [ \"$VERCEL_GIT_BRANCH\" = \"dev\" ]; then exit 0; fi"
+    }
+  }
+}
