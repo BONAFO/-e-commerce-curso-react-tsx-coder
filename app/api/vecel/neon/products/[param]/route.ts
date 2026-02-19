@@ -1,9 +1,7 @@
 import sql from "@/db/neon/db";
 import GameType from "@/types/games";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-
-// Buscar producto por ID
 async function getProductByID(id: string): Promise<{ status: number; data: GameType[] }> {
   try {
     const rows = await sql`SELECT * FROM Games WHERE id = ${id};`;
@@ -14,7 +12,6 @@ async function getProductByID(id: string): Promise<{ status: number; data: GameT
   }
 }
 
-// Buscar productos por nombre
 async function getProductsByName(name: string): Promise<{ status: number; data: GameType[] }> {
   try {
     const rows = await sql`
@@ -27,9 +24,8 @@ async function getProductsByName(name: string): Promise<{ status: number; data: 
   }
 }
 
-// Ruta principal
 export async function GET(
-  req: Request,
+  request: NextRequest,
   { params }: { params: { param: string } }
 ) {
   const { param } = params;
@@ -39,7 +35,6 @@ export async function GET(
     return NextResponse.json(resp);
   }
 
-  // Si es string => Name
   const resp = await getProductsByName(param);
   return NextResponse.json(resp);
 }
