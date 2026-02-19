@@ -31,6 +31,8 @@ export const cosa =async ()=>{
   
 }
 
+cosa()
+
 // Buscar productos por nombre
 const getProductsByName = async (
   name: string,
