@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import sql from "@/db/neon/db";
 import GameType from "@/types/games";
 
@@ -8,7 +8,7 @@ export async function getProductByID(id: string) {
     return NextResponse.json({ status: 200, data: rows as GameType[] });
   } catch (err) {
     console.error("❌ Error en getProductByID:", err);
-    return { status: 500, data: [] };
+    return NextResponse.json({ status: 500, data: [] });
   }
 }
 
@@ -20,16 +20,16 @@ export async function getProductsByName(name: string) {
     return NextResponse.json({ status: 200, data: rows as GameType[] });
   } catch (err) {
     console.error("❌ Error en getProductsByName:", err);
-    return { status: 500, data: [] };
+    return NextResponse.json({ status: 500, data: [] });
   }
 }
 
 export async function getProducts() {
   try {
-    const rows = await sql`SELECT * FROM games;`;
+    const rows = await sql`SELECT * FROM Games;`;
     return NextResponse.json({ status: 200, data: rows as GameType[] });
   } catch (err) {
-    console.error("❌ Error en getProductsByName:", err);
+    console.error("❌ Error en getProducts:", err);
     return NextResponse.json({ status: 500, data: [] });
   }
 }
