@@ -1,9 +1,16 @@
-import { NextResponse } from "next/server";
-import { neon } from "@neondatabase/serverless";
+import axios from "axios";
 
-const sql = neon(process.env.DATABASE_URL!);
+const vecel_neon_route = "/api/vecel/neon/";
 
-export async function GET() {
-  const result = await sql`SELECT NOW();`;
-  return NextResponse.json({ dbTime: result[0].now });
-}
+const getProducts = async () => {
+  const resp = await axios.get(`${vecel_neon_route}products`);
+  console.log(resp.data);
+};
+
+
+
+
+export default {
+  getProducts,
+
+};
