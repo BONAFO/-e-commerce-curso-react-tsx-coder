@@ -2,7 +2,9 @@ import sql from "@/db/neon/db";
 import GameType from "@/types/games";
 import { NextResponse, NextRequest } from "next/server";
 
-async function getProductByID(id: string): Promise<{ status: number; data: GameType[] }> {
+async function getProductByID(
+  id: string,
+): Promise<{ status: number; data: GameType[] }> {
   try {
     const rows = await sql`SELECT * FROM Games WHERE id = ${id};`;
     return { status: 200, data: rows as GameType[] };
@@ -12,7 +14,9 @@ async function getProductByID(id: string): Promise<{ status: number; data: GameT
   }
 }
 
-async function getProductsByName(name: string): Promise<{ status: number; data: GameType[] }> {
+async function getProductsByName(
+  name: string,
+): Promise<{ status: number; data: GameType[] }> {
   try {
     const rows = await sql`
       SELECT * FROM Games WHERE LOWER(name) LIKE ${"%" + name.toLowerCase() + "%"};
@@ -25,8 +29,8 @@ async function getProductsByName(name: string): Promise<{ status: number; data: 
 }
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { param: string } }
+  req: Request,
+  { params }: { params: { param: string } },
 ) {
   const { param } = params;
 
