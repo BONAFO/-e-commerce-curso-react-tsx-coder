@@ -26,13 +26,13 @@ const getProducts = async () => {
 //   }
 // };
 
-// export const cosa =async ()=>{
-//   const resp = await axios.get(`${vecel_neon_route}products?id=1`);
-//   console.log("cpsa",resp.data);
+export const cosa =async ()=>{
+  const resp = await axios.get(`${vecel_neon_route}products?id=1`);
+  console.log("cpsa",resp.data);
   
-// }
+}
 
-// cosa()
+cosa()
 
 // // Buscar productos por nombre
 // const getProductsByName = async (
