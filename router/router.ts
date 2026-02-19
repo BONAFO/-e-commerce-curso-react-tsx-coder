@@ -11,13 +11,13 @@ export const routes = {
   mainPageCategorie: (id: string | number) =>
     `/categorias/${isQueryMode ? "?id=" : ""}${id}`,
   productDetail: (productID: string | number) =>
-    `/game/${isQueryMode ? "?id=" : ""}${productID}`,
+    `/game/${isQueryMode ? "?productID=" : ""}${productID}`,
   productBill: "/cart/bill",
   productPay: "/cart/pay",
   contact: "/contact",
   newOrder: (orderID: string | number) =>
-    `/order/new/${isQueryMode ? "?id=" : ""}${orderID}`,
+    `/order/new/${isQueryMode ? "?orderID=" : ""}${orderID}`,
   showOrder: (orderID: string | number) =>
-    `/order/${isQueryMode ? "?id=" : ""}${orderID}`,
+    `/order/${isQueryMode ? "?orderID=" : ""}${orderID}`,
   searchOrder: "/order",
 };
