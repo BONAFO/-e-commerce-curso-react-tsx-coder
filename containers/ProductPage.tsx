@@ -7,9 +7,9 @@ import useProductsByID  from "@/hooks/products/ProductsByID";
 import Spinner from "../components/Spinner";
 
 
-//@ts-ignore
-export default function ItemDetailContainer({params}) {
 
+export default function ItemDetailContainer() {
+  const params = useParams();
   const productID = params.productID as string;
 
   const { isMobile } = useScreen();
