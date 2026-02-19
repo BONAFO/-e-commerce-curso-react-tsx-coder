@@ -1,9 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import sql from "@/db/neon/db";
 import GameType from "@/types/games";
 
-export async function GET() {
+//mofificar para poder obtener el query
+export async function GET(req: NextRequest) {
   try {
+    const { searchParams } = new URL(req.url);
+    console.log("req",searchParams.get("id"));
+
     const rows = await sql`SELECT * FROM games;`;
     return NextResponse.json({ status: 200, data: rows as GameType[] });
   } catch (err) {
