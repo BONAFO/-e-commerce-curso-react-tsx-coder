@@ -27,7 +27,8 @@ const getProductsByID = async (
 };
 
 export const cosa =async ()=>{
-  console.log("cpsa",await axios.get(`${vecel_neon_route}products/?id=1`));
+  const resp = await axios.get(`${vecel_neon_route}products/?id=1`);
+  console.log("cpsa",resp);
   
 }
 

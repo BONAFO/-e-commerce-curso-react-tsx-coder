@@ -8,6 +8,6 @@ export async function GET(
   // acá simplemente devolvemos el param recibido
   return NextResponse.json({
     status: 200,
-    param: "",
+    param: req,
   });
 }
