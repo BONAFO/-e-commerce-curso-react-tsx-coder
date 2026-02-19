@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { param: string } }
+  req: NextRequest,
 ) {
-
-  console.log(params);
-  
+ console.log(req);
+ 
+  // acá simplemente devolvemos el param recibido
   return NextResponse.json({
     status: 200,
-    param: params.param,
+    param: "",
   });
 }
