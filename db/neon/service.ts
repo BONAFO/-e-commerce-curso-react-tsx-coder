@@ -1,3 +1,4 @@
+import CategoryType from "@/types/categories";
 import GameType from "@/types/games";
 import axios from "axios";
 
@@ -8,52 +9,76 @@ const getProducts = async () => {
     const resp = await axios.get(`${vecel_neon_route}products`);
     return resp.data;
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error getProducts:", error);
     return { status: 500, data: [] };
   }
 };
 
-// // Obtener producto por ID
-// const getProductsByID = async (
-//   id: number | string,
-// ): Promise<{ status: number; data: GameType[] }> => {
-//   try {
-//     const resp = await axios.get(`${vecel_neon_route}products/${id}`);
-//     return resp.data;
-//   } catch (err) {
-//     console.error("❌ Error getProductByID:", err);
-//     return { status: 500, data: [] };
-//   }
-// };
-
-export const cosa = async () => {
-  console.log("id",(await axios.get(`${vecel_neon_route}products?id=1`)).data);
-  console.log("name",(await axios.get(`${vecel_neon_route}products?name=left`)).data);
-  console.log("all",(await axios.get(`${vecel_neon_route}products`)).data);
+const getProductsByID = async (
+  id: number | string,
+): Promise<{ status: number; data: GameType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}products?id=${id}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductByID:", err);
+    return { status: 500, data: [] };
+  }
 };
 
-cosa();
+const getProductsByName = async (
+  name: string,
+): Promise<{ status: number; data: GameType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}products?name=${name}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductsByName:", err);
+    return { status: 500, data: [] };
+  }
+};
 
-// // Buscar productos por nombre
-// const getProductsByName = async (
-//   name: string,
-// ): Promise<{ status: number; data: GameType[] }> => {
-//   try {
-//     const resp = await axios.get(`${vecel_neon_route}products/${name}`);
-//     return resp.data;
-//   } catch (err) {
-//     console.error("❌ Error getProductsByName:", err);
-//     return { status: 500, data: [] };
-//   }
-// };
+const getCategories = async () => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}categories`);
+    return resp.data;
+  } catch (error) {
+    console.error("❌ Error getCategories:", error);
+    return { status: 500, data: [] };
+  }
+};
+
+const getProductsByCatID = async (
+  id: number | string,
+): Promise<{ status: number; data: CategoryType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}products?catID=${id}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductsByCatID:", err);
+    return { status: 500, data: [] };
+  }
+};
+
+const getProductsByCatName = async (
+  name: string,
+): Promise<{ status: number; data: CategoryType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}products?catName=${name}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductsByCatName:", err);
+    return { status: 500, data: [] };
+  }
+};
 
 export default {
   getProducts,
-  // getProductsByName,
-  // getProductsByID,
-  //   getProductsByCatID,
-  //   getProductsByCatName,
-  //   getCategories,
+  getProductsByName,
+  getProductsByID,
+  getProductsByCatID,
+  getProductsByCatName,
+  getCategories,
   //   saveSell,
   //   getOrder,
 };
