@@ -103,9 +103,11 @@ const getOrder = async (
 
       
       //@ts-ignore
-      resp.data.data.products! = resp.data.products.map((pro) => {
-        return { id: pro[0], quantity: pro[2] };
-      });
+      // resp.data.data.products! = resp.data.products.map((pro) => {
+      //   return { id: pro[0], quantity: pro[2] };
+      // });
+
+      
     }
     return resp.data;
   } catch (err) {
