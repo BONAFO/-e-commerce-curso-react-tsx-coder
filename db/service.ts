@@ -13,11 +13,11 @@ mock.getProductsByID = neon.getProductsByID;
 //@ts-ignore
 mock.getProductsByName = neon.getProductsByName;
 // //@ts-ignore
-// mock.getProducts = neon.getProducts;
-// //@ts-ignore
-// mock.getProducts = neon.getProducts;
-// //@ts-ignore
-// mock.getProducts = neon.getProducts;
+mock.getCategories = neon.getCategories;
+//@ts-ignore
+mock.getProductsByCatID = neon.getProductsByCatID;
+//@ts-ignore
+mock.getProductsByCatName = neon.getProductsByCatName;
 // //@ts-ignore
 // mock.getProducts = neon.getProducts;
 // //@ts-ignore

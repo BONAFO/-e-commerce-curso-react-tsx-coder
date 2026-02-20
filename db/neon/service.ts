@@ -1,3 +1,4 @@
+import CategoryType from "@/types/categories";
 import GameType from "@/types/games";
 import axios from "axios";
 
@@ -8,12 +9,11 @@ const getProducts = async () => {
     const resp = await axios.get(`${vecel_neon_route}products`);
     return resp.data;
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error getProducts:", error);
     return { status: 500, data: [] };
   }
 };
 
-// Obtener producto por ID
 const getProductsByID = async (
   id: number | string,
 ): Promise<{ status: number; data: GameType[] }> => {
@@ -26,7 +26,6 @@ const getProductsByID = async (
   }
 };
 
-// Buscar productos por nombre
 const getProductsByName = async (
   name: string,
 ): Promise<{ status: number; data: GameType[] }> => {
@@ -39,13 +38,47 @@ const getProductsByName = async (
   }
 };
 
+const getCategories = async () => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}categories`);
+    return resp.data;
+  } catch (error) {
+    console.error("❌ Error getCategories:", error);
+    return { status: 500, data: [] };
+  }
+};
+
+const getProductsByCatID = async (
+  id: number | string,
+): Promise<{ status: number; data: CategoryType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}categories?id=${id}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductsByCatID:", err);
+    return { status: 500, data: [] };
+  }
+};
+
+const getProductsByCatName = async (
+  name: string,
+): Promise<{ status: number; data: CategoryType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}categories?name=${name}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductsByCatName:", err);
+    return { status: 500, data: [] };
+  }
+};
+
 export default {
   getProducts,
   getProductsByName,
   getProductsByID,
-  //   getProductsByCatID,
-  //   getProductsByCatName,
-  //   getCategories,
+  getProductsByCatID,
+  getProductsByCatName,
+  getCategories,
   //   saveSell,
   //   getOrder,
 };
