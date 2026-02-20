@@ -20,10 +20,12 @@ export default function ShowOrder(): React.ReactElement {
 
   if (!spinner && !orderInfo) {
     return <OrderNotFound />;
+  }else{
+      console.log("orderInfo",orderInfo);
+  console.log("orderInfo",orderInfo.finalImport);
   }
 
-  console.log("orderInfo",orderInfo);
-  console.log("orderInfo",orderInfo.finalImport);
+
 
   return (
     <>
