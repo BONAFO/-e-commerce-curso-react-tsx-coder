@@ -1,22 +1,23 @@
 // @ts-nocheck
 "use client";
 
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import service, { MODE } from "@/db/service";
 
-import {  useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { payMethods } from "./PayInfo";
 import OrderType from "@/types/orders";
 
 const { getOrder, getProductsByID } = service[MODE];
 
-
-
-
-export const useShowOrderHook = ({ isDepend = false }: { isDepend?: boolean }) => {
+export const useShowOrderHook = ({
+  isDepend = false,
+}: {
+  isDepend?: boolean;
+}) => {
   const params = useParams();
-  const orderID = params?.orderID as string ;
+  const orderID = params?.orderID as string;
   const [orderInfo, setOrderInfo] = useState<any>(null);
   const [spinner, setSpinner] = useState(true);
 
@@ -25,9 +26,8 @@ export const useShowOrderHook = ({ isDepend = false }: { isDepend?: boolean }) =
       .then(async (orderResponse) => {
         const myorder = orderResponse.data;
 
-
         const payMethodFound = payMethods.find(
-          (pm) => pm.id === myorder.payMethod
+          (pm) => pm.id === myorder.payMethod,
         );
 
         //@ts-ignore
@@ -46,7 +46,10 @@ export const useShowOrderHook = ({ isDepend = false }: { isDepend?: boolean }) =
           productsData.push(response.data[0]);
         }
 
-        myorder.products = productsData;        
+        myorder.products = productsData;
+
+        console.log(myorder, myorder.finalImport);
+
         setSpinner(false);
         setOrderInfo(myorder);
       })
