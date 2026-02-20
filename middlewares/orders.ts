@@ -57,3 +57,24 @@ export async function saveOrder(
     return NextResponse.json({ status: 500, data: [] });
   }
 }
+
+export async function getOrder(orderID: string | number){
+  try {
+    if (!orderID) {
+      return NextResponse.json({ status: 400, data: null, message: "Missing id" });
+    }
+
+    const rows = await sql`
+      SELECT * FROM Orders WHERE id = ${orderID};
+    `;
+
+    if (!rows.length) {
+      return NextResponse.json({ status: 404, data: null });
+    }
+
+    return NextResponse.json({ status: 200, data: rows[0] });
+  } catch (err) {
+    console.error("❌ Error en GET /orders:", err);
+    return NextResponse.json({ status: 500, data: null });
+  }
+}

@@ -1,5 +1,6 @@
 import CategoryType from "@/types/categories";
 import GameType from "@/types/games";
+import OrderType from "@/types/orders";
 import axios from "axios";
 
 const vecel_neon_route = "/api/vecel/neon/";
@@ -72,7 +73,6 @@ const getProductsByCatName = async (
   }
 };
 
-// Guardar una venta (mock)
 const saveSell = async (
   sellData: any,
   stockData: { id: number | string; stock: number }[],
@@ -84,12 +84,26 @@ const saveSell = async (
     const resp = await axios.post(`${vecel_neon_route}orders`, sellData, {
       headers: { "Content-Type": "application/json" },
     });
-    return { status: resp.status, data: resp.data.data };
+    return resp.data;
   } catch (err) {
     console.error("❌ Error saveSell:", err);
     return { status: 500, data: null };
   }
 };
+
+const getOrder = async (
+  id: number | string,
+): Promise<{ status: number; data: OrderType | null }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}orders?id=${id}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getOrder:", err);
+    return { status: 500, data: null };
+  }
+};
+
+
 
 export default {
   getProducts,
@@ -99,5 +113,5 @@ export default {
   getProductsByCatName,
   getCategories,
   saveSell,
-  //   getOrder,
+  getOrder,
 };
