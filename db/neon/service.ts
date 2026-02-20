@@ -79,7 +79,9 @@ const saveSell = async (
   stockData: { id: number | string; stock: number }[],
 ) => {
 
-  console.log(sellData);
+  // sellData.products = sellData.products.map(pro => [pro.id,pro.quantity]); 
+
+  console.log(sellData.products);
   
   return { status: 200, data: "dsuasdhasdyha12" };
 };
