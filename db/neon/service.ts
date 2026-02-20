@@ -96,14 +96,18 @@ const getOrder = async (
 ): Promise<{ status: number; data: OrderType | null }> => {
   try {
     const resp = await axios.get(`${vecel_neon_route}orders?id=${id}`);
+    if (resp.status == 200) {
+      //@ts-ignore
+      resp.data.products! = resp.data.products.map((pro) => {
+        return { id: pro[0], quantity: pro[2] };
+      });
+    }
     return resp.data;
   } catch (err) {
     console.error("❌ Error getOrder:", err);
     return { status: 500, data: null };
   }
 };
-
-
 
 export default {
   getProducts,
