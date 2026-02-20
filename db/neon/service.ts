@@ -98,6 +98,9 @@ const getOrder = async (
     const resp = await axios.get(`${vecel_neon_route}orders?id=${id}`);
     if (resp.status == 200) {
       console.log(resp.data.data);
+      console.log(resp.data.data.products);
+      console.log(typeof resp.data.data.products);
+
       
       //@ts-ignore
       resp.data.data.products! = resp.data.products.map((pro) => {
