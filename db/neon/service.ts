@@ -101,8 +101,7 @@ const getOrder = async (
       resp.data.data.products = resp.data.data.products.map((pro) => {
         return { id: pro[0], quantity: pro[1] };
       });
-      console.log("finalImport",resp.data.data.finalImport);
-      
+
     }
     return resp.data;
   } catch (err) {

@@ -11,6 +11,7 @@ import OrderType from "@/types/orders";
 import { useShowOrderHook } from "@/hooks/pay/ShowOrder";
 import { payMethods } from "@/hooks/pay/PayInfo";
 import OrderNotFound from "./OrderNotFound";
+import { MoneyRounded } from "@mui/icons-material";
 
 export default function ShowOrder(): React.ReactElement {
   const { isMobile } = useScreen();
@@ -20,6 +21,9 @@ export default function ShowOrder(): React.ReactElement {
   if (!spinner && !orderInfo) {
     return <OrderNotFound />;
   }
+
+  console.log("orderInfo",orderInfo);
+  console.log("orderInfo",orderInfo.finalImport);
 
   return (
     <>

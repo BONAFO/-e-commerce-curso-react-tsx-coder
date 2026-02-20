@@ -46,7 +46,7 @@ export const useShowOrderHook = ({ isDepend = false }: { isDepend?: boolean }) =
         }
 
         myorder.products = productsData;
-        console.log(myorder,myorder);
+        console.log("myordr",myorder);
         
         setSpinner(false);
         setOrderInfo(myorder);
