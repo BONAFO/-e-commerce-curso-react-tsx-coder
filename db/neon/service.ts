@@ -72,6 +72,20 @@ const getProductsByCatName = async (
   }
 };
 
+
+// Guardar una venta (mock)
+const saveSell = async (
+  sellData: any,
+  stockData: { id: number | string; stock: number }[],
+) => {
+
+  console.log(sellData);
+  
+  return { status: 200, data: "dsuasdhasdyha12" };
+};
+
+
+
 export default {
   getProducts,
   getProductsByName,
