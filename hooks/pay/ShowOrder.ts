@@ -48,13 +48,10 @@ export const useShowOrderHook = ({
 
         myorder.products = productsData;
 
-        Object.keys(myorder).map(m => {
-          console.log(m,myorder[m]);
-          
-        })
+        // const objetcty = JSON.parse(JSON.stringify(myorder)); 
 
         setSpinner(false);
-        setOrderInfo(myorder);
+        setOrderInfo(objetcty);
       })
       .catch((err) => {
         setSpinner(false);

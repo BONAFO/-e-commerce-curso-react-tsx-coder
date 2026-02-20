@@ -93,7 +93,7 @@ const saveSell = async (
 
 const getOrder = async (
   id: number | string,
-): Promise<{ status: number; data: OrderType | null }> => {
+)=> {
   try {
     const resp = await axios.get(`${vecel_neon_route}orders?id=${id}`);
     if (resp.status == 200) {
