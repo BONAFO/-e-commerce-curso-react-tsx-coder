@@ -20,13 +20,18 @@ export default function ShowOrder(): React.ReactElement {
   if (!spinner && !orderInfo) {
     return <OrderNotFound />;
   }
-  console.log(orderInfo);
 
   return (
     <>
       <Spinner loading={spinner} />
       {orderInfo ? (
+        
         <>
+          {(()=>{
+            console.log("asd", orderInfo);
+            
+            return ""
+          })()}
           <Box
             sx={{
               backgroundColor: "#51515121",
