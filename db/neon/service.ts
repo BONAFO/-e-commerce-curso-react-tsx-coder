@@ -100,7 +100,7 @@ const getOrder = async (
 
       //@ts-ignore
       resp.data.data.products.map(pro  => {
-        console.log(pro);
+        console.log(1,pro);
         
       })
 
