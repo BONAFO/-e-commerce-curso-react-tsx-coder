@@ -13,44 +13,36 @@ const getProducts = async () => {
   }
 };
 
-// // Obtener producto por ID
-// const getProductsByID = async (
-//   id: number | string,
-// ): Promise<{ status: number; data: GameType[] }> => {
-//   try {
-//     const resp = await axios.get(`${vecel_neon_route}products/${id}`);
-//     return resp.data;
-//   } catch (err) {
-//     console.error("❌ Error getProductByID:", err);
-//     return { status: 500, data: [] };
-//   }
-// };
-
-export const cosa = async () => {
-  console.log("id",(await axios.get(`${vecel_neon_route}products?id=1`)).data);
-  console.log("name",(await axios.get(`${vecel_neon_route}products?name=left`)).data);
-  console.log("all",(await axios.get(`${vecel_neon_route}products`)).data);
+// Obtener producto por ID
+const getProductsByID = async (
+  id: number | string,
+): Promise<{ status: number; data: GameType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}products?id=${id}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductByID:", err);
+    return { status: 500, data: [] };
+  }
 };
 
-cosa();
-
-// // Buscar productos por nombre
-// const getProductsByName = async (
-//   name: string,
-// ): Promise<{ status: number; data: GameType[] }> => {
-//   try {
-//     const resp = await axios.get(`${vecel_neon_route}products/${name}`);
-//     return resp.data;
-//   } catch (err) {
-//     console.error("❌ Error getProductsByName:", err);
-//     return { status: 500, data: [] };
-//   }
-// };
+// Buscar productos por nombre
+const getProductsByName = async (
+  name: string,
+): Promise<{ status: number; data: GameType[] }> => {
+  try {
+    const resp = await axios.get(`${vecel_neon_route}products?name=${name}`);
+    return resp.data;
+  } catch (err) {
+    console.error("❌ Error getProductsByName:", err);
+    return { status: 500, data: [] };
+  }
+};
 
 export default {
   getProducts,
-  // getProductsByName,
-  // getProductsByID,
+  getProductsByName,
+  getProductsByID,
   //   getProductsByCatID,
   //   getProductsByCatName,
   //   getCategories,
