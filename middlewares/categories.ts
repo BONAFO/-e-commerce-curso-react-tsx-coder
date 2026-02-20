@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import sql from "@/db/neon/db";
 import GameType from "@/types/games";
+import CategoryType from "@/types/categories";
 
 export async function getCategoryByID(id: string) {
   try {
-    const rows = await sql`SELECT * FROM Games WHERE id = ${id};`;
-    return NextResponse.json({ status: 200, data: rows as GameType[] });
+    const rows = await sql`SELECT * FROM categories WHERE id = ${id};`;
+    return NextResponse.json({ status: 200, data: rows as CategoryType[] });
   } catch (err) {
     console.error("❌ Error en getCategoryByID:", err);
     return NextResponse.json({ status: 500, data: [] });
@@ -15,21 +16,26 @@ export async function getCategoryByID(id: string) {
 export async function getCategoryByName(name: string) {
   try {
     const rows = await sql`
-      SELECT * FROM Games WHERE LOWER(name) LIKE ${"%" + name.toLowerCase() + "%"};
+      SELECT * FROM categories 
+      WHERE LOWER(name_es) LIKE ${"%" + name.toLowerCase() + "%"}
+         OR LOWER(name_en) LIKE ${"%" + name.toLowerCase() + "%"}
+         OR LOWER(normalized_es) LIKE ${"%" + name.toLowerCase() + "%"}
+         OR LOWER(normalized_en) LIKE ${"%" + name.toLowerCase() + "%"};
     `;
-    return NextResponse.json({ status: 200, data: rows as GameType[] });
+    return NextResponse.json({ status: 200, data: rows as CategoryType[] });
   } catch (err) {
-    console.error("❌ Error en getCategorysByName:", err);
+    console.error("❌ Error en getCategoryByName:", err);
     return NextResponse.json({ status: 500, data: [] });
   }
 }
 
+
 export async function getCategories() {
   try {
-    const rows = await sql`SELECT * FROM Games;`;
-    return NextResponse.json({ status: 200, data: rows as GameType[] });
+    const rows = await sql`SELECT * FROM categories;`;
+    return NextResponse.json({ status: 200, data: rows as CategoryType[] });
   } catch (err) {
-    console.error("❌ Error en getCategorys:", err);
+    console.error("❌ Error en getCategories:", err);
     return NextResponse.json({ status: 500, data: [] });
   }
 }
