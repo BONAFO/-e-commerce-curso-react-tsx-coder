@@ -47,9 +47,11 @@ export const useShowOrderHook = ({
         }
 
         myorder.products = productsData;
-        
+
+        const objetcty = JSON.parse(JSON.stringify(myorder)); 
+
         setSpinner(false);
-        setOrderInfo(myorder);
+        setOrderInfo(objetcty);
       })
       .catch((err) => {
         setSpinner(false);
