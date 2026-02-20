@@ -48,7 +48,10 @@ export const useShowOrderHook = ({
 
         myorder.products = productsData;
 
-        console.log(myorder, myorder.finalImport);
+        Object.keys(myorder).map(m => {
+          console.log(m,myorder[m]);
+          
+        })
 
         setSpinner(false);
         setOrderInfo(myorder);
