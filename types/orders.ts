@@ -14,4 +14,3 @@ export default interface OrderType {
   products: GameType[] | Object[];
 }
 
-

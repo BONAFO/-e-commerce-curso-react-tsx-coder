@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import  { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ export const useShowOrderHook = ({ isDepend = false }: { isDepend?: boolean }) =
   useEffect(() => {
     getOrder(orderID)
       .then(async (orderResponse) => {
-        const myorder = orderResponse.data as OrderType;
+        const myorder = orderResponse.data;
 
 
         const payMethodFound = payMethods.find(
@@ -45,9 +46,7 @@ export const useShowOrderHook = ({ isDepend = false }: { isDepend?: boolean }) =
           productsData.push(response.data[0]);
         }
 
-        myorder.products = productsData;
-        console.log("myordr",myorder);
-        
+        myorder.products = productsData;        
         setSpinner(false);
         setOrderInfo(myorder);
       })

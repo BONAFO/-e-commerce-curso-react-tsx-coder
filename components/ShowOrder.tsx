@@ -14,7 +14,7 @@ import OrderNotFound from "./OrderNotFound";
 
 export default function ShowOrder(): React.ReactElement {
   const { isMobile } = useScreen();
-  const { orderInfo, spinner }: { orderInfo: OrderType | {}; spinner: boolean } =
+  const { orderInfo, spinner } =
     useShowOrderHook({});
 
   if (!spinner && !orderInfo) {
