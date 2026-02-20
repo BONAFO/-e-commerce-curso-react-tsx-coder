@@ -93,6 +93,6 @@ export default {
   getProductsByCatID,
   getProductsByCatName,
   getCategories,
-  //   saveSell,
+    saveSell,
   //   getOrder,
 };
