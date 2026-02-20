@@ -84,7 +84,7 @@ const saveSell = async (
     const resp = await axios.post(`${vecel_neon_route}orders`, sellData, {
       headers: { "Content-Type": "application/json" },
     });
-    return { status: resp.status, data: resp.data };
+    return { status: resp.status, data: resp.data.data };
   } catch (err) {
     console.error("❌ Error saveSell:", err);
     return { status: 500, data: null };
