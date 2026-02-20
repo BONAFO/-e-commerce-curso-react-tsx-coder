@@ -357,13 +357,13 @@ async function deploy() {
     resp = await sql`CREATE TABLE IF NOT EXISTS Orders (
       id SERIAL PRIMARY KEY,
       address TEXT NOT NULL,
-      cardNumber TEXT NOT NULL,
+      cardNumber TEXT,
       dni TEXT NOT NULL,
       email TEXT NOT NULL,
       finalImport NUMERIC NOT NULL,
       fullName TEXT NOT NULL,
       payMethod TEXT NOT NULL,
-      payProcessor TEXT NOT NULL,
+      payProcessor TEXT,
       phone TEXT NOT NULL,
       products INTEGER[][] NOT NULL
     );`;
