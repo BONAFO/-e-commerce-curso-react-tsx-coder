@@ -81,7 +81,7 @@ const saveSell = async (
 
   // sellData.products = sellData.products.map(pro => [pro.id,pro.quantity]); 
 
-  console.log(sellData.products);
+  console.log(JSON.stringify(sellData.products));
   
   return { status: 200, data: "dsuasdhasdyha12" };
 };
