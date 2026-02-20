@@ -50,7 +50,8 @@ export async function saveOrder(
       `;
     }
 
-    return NextResponse.json({ status: 200, data: 1 });
+    const orderID = 1;
+    return NextResponse.json({ status: 200, data: orderID });
   } catch (err) {
     console.error("❌ Error en saveOrder:", err);
     return NextResponse.json({ status: 500, data: [] });

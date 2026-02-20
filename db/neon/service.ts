@@ -72,21 +72,24 @@ const getProductsByCatName = async (
   }
 };
 
-
 // Guardar una venta (mock)
 const saveSell = async (
   sellData: any,
   stockData: { id: number | string; stock: number }[],
 ) => {
+  try {
+    //@ts-ignore
+    sellData.products = sellData.products.map((pro) => [pro.id, pro.quantity]);
 
-  // sellData.products = sellData.products.map(pro => [pro.id,pro.quantity]); 
-
-  console.log(JSON.stringify(sellData.products));
-  
-  return { status: 200, data: "dsuasdhasdyha12" };
+    const resp = await axios.post(`${vecel_neon_route}orders`, sellData, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return { status: resp.status, data: resp.data };
+  } catch (err) {
+    console.error("❌ Error saveSell:", err);
+    return { status: 500, data: null };
+  }
 };
-
-
 
 export default {
   getProducts,
@@ -95,6 +98,6 @@ export default {
   getProductsByCatID,
   getProductsByCatName,
   getCategories,
-    saveSell,
+  saveSell,
   //   getOrder,
 };
