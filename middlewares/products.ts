@@ -33,3 +33,39 @@ export async function getProducts() {
     return NextResponse.json({ status: 500, data: [] });
   }
 }
+
+export async function getProductsByCatID(categorieID: string | number) {
+  try {
+    const rows = await sql`
+      SELECT * FROM Games WHERE category = ${categorieID};
+    `;
+    return NextResponse.json({ status: 200, data: rows as GameType[] });
+  } catch (err) {
+    console.error("❌ Error en getProductsByCatID:", err);
+    return NextResponse.json({ status: 500, data: [] });
+  }
+}
+
+export async function getProductsByCatName(categorieName: string) {
+  try {
+    const category = await sql`
+      SELECT * FROM Categories 
+      WHERE normalized_es = ${categorieName} 
+         OR normalized_en = ${categorieName};
+    `;
+
+    if (!category.length) {
+      return NextResponse.json({ status: 404, data: [] });
+    }
+
+    const categorieID = category[0].id;
+
+    const rows = await sql`
+      SELECT * FROM Games WHERE category = ${categorieID};
+    `;
+    return NextResponse.json({ status: 200, data: rows as GameType[] });
+  } catch (err) {
+    console.error("❌ Error en getProductsByCatName:", err);
+    return NextResponse.json({ status: 500, data: [] });
+  }
+}

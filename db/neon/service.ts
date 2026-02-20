@@ -52,7 +52,7 @@ const getProductsByCatID = async (
   id: number | string,
 ): Promise<{ status: number; data: CategoryType[] }> => {
   try {
-    const resp = await axios.get(`${vecel_neon_route}categories?id=${id}`);
+    const resp = await axios.get(`${vecel_neon_route}products?catID=${id}`);
     return resp.data;
   } catch (err) {
     console.error("❌ Error getProductsByCatID:", err);
@@ -64,7 +64,7 @@ const getProductsByCatName = async (
   name: string,
 ): Promise<{ status: number; data: CategoryType[] }> => {
   try {
-    const resp = await axios.get(`${vecel_neon_route}categories?name=${name}`);
+    const resp = await axios.get(`${vecel_neon_route}products?catName=${name}`);
     return resp.data;
   } catch (err) {
     console.error("❌ Error getProductsByCatName:", err);
