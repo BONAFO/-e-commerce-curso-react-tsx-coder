@@ -37,7 +37,7 @@ export async function getProducts() {
 export async function getProductsByCatID(categorieID: string | number) {
   try {
     const rows = await sql`
-      SELECT * FROM Games WHERE category = ${categorieID};
+      SELECT * FROM Games WHERE ${categorieID} = ANY(category);
     `;
     return NextResponse.json({ status: 200, data: rows as GameType[] });
   } catch (err) {
@@ -45,6 +45,7 @@ export async function getProductsByCatID(categorieID: string | number) {
     return NextResponse.json({ status: 500, data: [] });
   }
 }
+
 
 export async function getProductsByCatName(categorieName: string) {
   try {
